@@ -9,6 +9,12 @@ def get_islands(request: HttpRequest) -> HttpResponse:
 
     context = {
         "islands": islands,
+
     }
 
     return render(request, "island_list.html", context)
+
+
+def upload_island_image(request: HttpRequest) -> HttpResponse:
+    models.IslandPhoto.objects.create(image=request.FILES["image"])
+    return render(request, "upload_island_image.html")
